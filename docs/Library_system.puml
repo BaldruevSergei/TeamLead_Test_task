@@ -1,0 +1,42 @@
+@startuml
+abstract class Media {
+    + id: String
+    + title: String
+    + publicationDate: Date
+    + getDetails(): String
+}
+
+class Book extends Media {
+    + isbn: String
+    + author: String
+    + genres: List<String>
+    + getDetails(): String
+}
+
+class Member {
+    + memberId: String
+    + name: String
+    + contactInfo: String
+    + borrowBook(book: Book): void
+    + returnBook(transaction: BorrowingTransaction): void
+}
+
+class BorrowingTransaction {
+    + transactionId: String
+    + member: Member
+    + book: Book
+    + borrowDate: Date
+    + dueDate: Date
+    + isOverdue(): Boolean
+    + markReturned(): void
+}
+
+class ReminderService {
+    + sendReminder(transaction: BorrowingTransaction): void
+}
+
+Media <|-- Book
+Member --> BorrowingTransaction : "1..1"
+Book --> BorrowingTransaction : "1..1"
+ReminderService ..> BorrowingTransaction : "uses"
+@enduml

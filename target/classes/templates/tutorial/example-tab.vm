@@ -1,0 +1,12 @@
+<div class="aui-dropdown2">
+    <a href="#" class="aui-dropdown2-trigger aui-button">
+        <span class="aui-icon aui-icon-small aui-iconfont-app-switch">Example Dropdown</span>
+    </a>
+    <div class="aui-dropdown2-content">
+        <ul>
+            #foreach ($example in $examples)
+                <li><a href="#">$example.name</a></li>
+            #end
+        </ul>
+    </div>
+</div>
